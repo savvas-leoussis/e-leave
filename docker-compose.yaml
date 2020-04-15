@@ -1,0 +1,54 @@
+version:                      "3.7"
+services:
+  php:
+    build:
+      context:                .
+    container_name:           eleave-php
+    restart:                  unless-stopped
+    ports:
+      - '80:80'
+    volumes:
+      - ./:/var/www/html/
+    networks:
+      - eleave
+
+  db:
+    image:                    mysql:8.0
+    container_name:           eleave-db
+    restart:                  unless-stopped
+    environment:
+        MYSQL_DATABASE:       eleave
+        MYSQL_USER:           root
+        MYSQL_ROOT_PASSWORD:  root
+        SERVICE_NAME:         mysql
+    volumes:
+      - ./eleave.sql:/docker-entrypoint-initdb.d/eleave.sql
+    networks:
+      - eleave
+    command:                  ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci','--default-authentication-plugin=mysql_native_password']
+
+  phpmyadmin:
+      depends_on:
+        - db
+      image:                  phpmyadmin/phpmyadmin
+      container_name:         eleave-phpmyadmin
+      restart:                unless-stopped
+      ports:
+        - '8080:80'
+      environment:
+        PMA_HOSTS:            db
+      networks:
+        - eleave
+  mailhog:
+      image:                  mailhog/mailhog:v1.0.0
+      container_name:         eleave-mailhog
+      restart:                unless-stopped
+      ports:
+        - "1025:1025"
+        - "8025:8025"
+      networks:
+        - eleave
+
+networks:
+  eleave:
+    driver:                   bridge

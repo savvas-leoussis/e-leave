@@ -1,0 +1,31 @@
+CREATE DATABASE IF NOT EXISTS eleave;
+USE eleave;
+
+CREATE TABLE users(
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	first_name VARCHAR(255) NOT NULL,
+	last_name VARCHAR(255) NOT NULL,
+	email VARCHAR(255) NOT NULL UNIQUE,
+	type ENUM('employee', 'supervisor') NOT NULL,
+	password VARCHAR(255) NOT NULL,
+	supervisor_id INT UNSIGNED NOT NULL REFERENCES users(id),
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE applications(
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	employee_id INT UNSIGNED NOT NULL REFERENCES users(id),
+	vacation_start DATE NOT NULL,
+	vacation_end DATE NOT NULL,
+	reason TEXT,
+	date_submitted DATE NOT NULL,
+	days_requested INT NOT NULL,
+	status ENUM('pending', 'accepted', 'rejected') NOT NULL,
+	PRIMARY KEY (id)
+);
+
+INSERT INTO users (first_name, last_name, email, type, password, supervisor_id)
+VALUES ('Savvas', 'Leousis', 'savvasleoussis@gmail.com', 'supervisor', 'password', 1);
+
+INSERT INTO users (first_name, last_name, email, type, password, supervisor_id)
+VALUES ('John', 'Doe', 'johndoe@gmail.com', 'employee', 'password', 1);
