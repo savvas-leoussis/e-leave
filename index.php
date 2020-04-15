@@ -202,10 +202,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                       echo '<table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                                       <thead>
                                         <tr>
-                                          <th class="th-sm">Submission Date</th>
-                                          <th class="th-sm">Requested Dates</th>
-                                          <th class="th-sm">Requested Days</th>
-                                          <th class="th-sm">Status</th>
+                                          <th >Submission Date</th>
+                                          <th >Requested Dates</th>
+                                          <th >Requested Days</th>
+                                          <th >Status</th>
                                         </tr>
                                       </thead>
                                       <tbody>';

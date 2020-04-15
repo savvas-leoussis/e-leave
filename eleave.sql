@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Apr 15, 2020 at 08:09 PM
+-- Generation Time: Apr 15, 2020 at 08:27 PM
 -- Server version: 8.0.19
 -- PHP Version: 7.4.4
 
@@ -46,17 +46,9 @@ INSERT INTO `applications` (`id`, `employee_id`, `vacation_start`, `vacation_end
 (1, 3, '2020-04-12', '2020-04-15', 'This is a reason.', '2020-04-12', 3, 'pending'),
 (2, 3, '2020-04-16', '2020-04-17', 'This is a reason.', '2020-04-09', 2, 'pending'),
 (3, 3, '2020-04-16', '2020-04-17', 'This is a reason.', '2020-04-01', 2, 'pending'),
-(4, 3, '2020-01-01', '2020-02-02', 'test reason', '2020-04-12', 7, 'pending'),
-(5, 3, '2020-01-01', '2020-02-02', 'test reason', '2020-04-12', 7, 'pending'),
-(6, 3, '2020-01-01', '2020-02-02', 'test reason', '2020-04-12', 7, 'pending'),
-(7, 3, '2020-04-04', '2020-06-06', 'test32', '2020-04-12', 43, 'pending'),
-(8, 3, '2020-05-02', '2021-05-05', 'test54', '2020-04-12', 258, 'pending'),
-(9, 3, '2020-01-01', '2020-06-06', 'test', '2020-04-12', 109, 'pending'),
 (10, 3, '2020-01-01', '2020-02-02', 'test', '2020-04-12', 21, 'pending'),
-(11, 3, '2020-01-01', '2020-02-02', 'test reason 2b', '2020-04-15', 21, 'pending'),
 (12, 3, '2020-02-02', '2020-03-03', 'resr', '2020-04-15', 22, 'pending'),
-(13, 3, '2020-01-01', '2023-03-03', 'ers', '2020-04-15', 806, 'pending'),
-(14, 3, '2020-02-02', '2020-03-03', 'ert', '2020-04-15', 22, 'pending');
+(22, 3, '2020-02-01', '2022-02-02', 'ewr', '2020-04-15', 511, 'accepted');
 
 -- --------------------------------------------------------
 
@@ -80,7 +72,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `type`, `password`, `supervisor_id`) VALUES
 (1, 'Savvas', 'Leousis', 'savvasleoussis@gmail.com', 'supervisor', '$2y$10$a2KUWibTmhMZCcB7D72BOOnVGD56./w3uCAAN1cyAKZeeXzt4jJVi', 1),
-(3, 'John', 'Doe', 'test@gmail.com', 'employee', '$2y$10$LLuC27fKlDxz5Wt.327gUedwXjqzoqgxSLxqKxHZnTiOR6Ep.bTFW', 0);
+(3, 'John', 'Doe', 'test@gmail.com', 'employee', '$2y$10$LLuC27fKlDxz5Wt.327gUedwXjqzoqgxSLxqKxHZnTiOR6Ep.bTFW', 1);
 
 --
 -- Indexes for dumped tables
@@ -106,7 +98,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `users`
