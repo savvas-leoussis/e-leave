@@ -20,9 +20,20 @@ The project tree consists of the following base folders:
 
 * `css`: Contains the basic `.css` styles that can be included in all pages.
 * `database`: Contains a sample dump of the `eleave` MySQL database, and its EER diagram.
-* `pages`: Contains all the pages that a user can navigate through the tool, written in PHP.
-* `templates`: Contains HTML templates that can be used dynamically for leave request e-mails.
 * `lib`: Contains a collection of PHP functions that are commonly used across all pages.
+* `pages`: Contains all the pages that a user can navigate through the tool, written in PHP.
+* `sample navigation`: Contains PNG images of a simple usage guide.
+* `templates`: Contains HTML templates that can be used dynamically for leave request e-mails.
+
+#### Sample Navigation
+
+
+
+#### Database Schema
+
+The `eleave` database complies with the following EER diagram:
+
+![database](https://raw.githubusercontent.com/savvas-leoussis/e-leave/master/database/database.png)
 
 ## Requirements
 
