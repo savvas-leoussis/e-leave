@@ -2,10 +2,12 @@
 
 ## Table of Contents
 
-- [Introduction](#markdown-header-introduction)
-- [Requirements](#markdown-header-requirements)
-- [Installation](#markdown-header-installation)
-- [Usage](#markdown-header-usage)
+- [Introduction](#introduction)
+- [Sample Navigation](#sample-navigation)
+- [Database Schema](#database-schema)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
 
 ## Introduction
 
@@ -25,11 +27,11 @@ The project tree consists of the following base folders:
 * `sample navigation`: Contains PNG images of a simple usage guide.
 * `templates`: Contains HTML templates that can be used dynamically for leave request e-mails.
 
-#### Sample Navigation
+## Sample Navigation
 
+##### Use Case 1 (User)
 
-
-#### Database Schema
+## Database Schema
 
 The `eleave` database complies with the following EER diagram:
 
