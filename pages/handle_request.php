@@ -24,8 +24,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 header("location: index.php");
                 exit;
             }
-            // Close statement
 
+            // Close statement
             mysqli_stmt_close($stmt);
 
             //Update application status
@@ -72,11 +72,11 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             {
                                 return date('d/m/Y', strtotime($date));
                             }
-                            
+
                             $to = $email_to;
                             $subject = 'e-Leave Response';
 
-                            $message = file_get_contents('info.html', true);
+                            $message = file_get_contents('templates/info.html', true);
 
                             $message = str_replace("{accepted/rejected}", $status, $message);
                             $message = str_replace("{submission_date}", format_date($date_submitted), $message);
@@ -105,7 +105,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost/css/style.css">
 </head>
 
 <body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
