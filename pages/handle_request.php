@@ -76,7 +76,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             $to = $email_to;
                             $subject = 'e-Leave Response';
 
-                            $message = file_get_contents('templates/info.html', true);
+                            $message = file_get_contents('../templates/info.html', true);
 
                             $message = str_replace("{accepted/rejected}", $status, $message);
                             $message = str_replace("{submission_date}", format_date($date_submitted), $message);
@@ -100,7 +100,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 <html>
 
 <head>
-    <title></title>
+    <title>E-Leave - Request</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
