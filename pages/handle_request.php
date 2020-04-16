@@ -1,5 +1,6 @@
 <?php
 require_once "config.php";
+include '../lib/format_date.php';
 // Initialize the session
 session_start();
 
@@ -67,11 +68,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             mysqli_stmt_close($stmt2);
 
                             //Send e-mail back to applicant
-
-                            function format_date($date)
-                            {
-                                return date('d/m/Y', strtotime($date));
-                            }
 
                             $to = $email_to;
                             $subject = 'e-Leave Response';

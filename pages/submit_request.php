@@ -10,6 +10,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 // Include config file
 require_once "config.php";
+include '../lib/format_date.php';
+include '../lib/get_workdays.php';
 
 // Define variables and initialize with empty values
 $date_from = $date_to = $reason = "";
@@ -38,60 +40,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $reason = $_POST["reason"] ;
     }
-    function getWorkdays($date1, $date2, $workSat = false, $patron = null)
-    {
-        if (!defined('SATURDAY')) {
-            define('SATURDAY', 6);
-        }
-        if (!defined('SUNDAY')) {
-            define('SUNDAY', 0);
-        }
 
-        // Array of all public festivities
-        $publicHolidays = array('01-01', '01-06', '04-25', '05-01', '06-02', '08-15', '11-01', '12-08', '12-25', '12-26');
-        // The Patron day (if any) is added to public festivities
-        if ($patron) {
-            $publicHolidays[] = $patron;
-        }
-
-        /*
-         * Array of all Easter Mondays in the given interval
-         */
-        $yearStart = date('Y', strtotime($date1));
-        $yearEnd   = date('Y', strtotime($date2));
-
-        for ($i = $yearStart; $i <= $yearEnd; $i++) {
-            $easter = date('Y-m-d', easter_date($i));
-            list($y, $m, $g) = explode("-", $easter);
-            $monday = mktime(0, 0, 0, date($m), date($g)+1, date($y));
-            $easterMondays[] = $monday;
-        }
-
-        $start = strtotime($date1);
-        $end   = strtotime($date2);
-        $workdays = 0;
-        for ($i = $start; $i <= $end; $i = strtotime("+1 day", $i)) {
-            $day = date("w", $i);  // 0=sun, 1=mon, ..., 6=sat
-            $mmgg = date('m-d', $i);
-            if ($day != SUNDAY &&
-          !in_array($mmgg, $publicHolidays) &&
-          !in_array($i, $easterMondays) &&
-          !($day == SATURDAY && $workSat == false)) {
-                $workdays++;
-            }
-        }
-
-        return intval($workdays);
-    }
-    function format_date($date)
-    {
-        return date('d/m/Y', strtotime($date));
-    }
     $sql = "INSERT INTO applications (employee_id, vacation_start, vacation_end, reason, date_submitted, days_requested, status) VALUES ((SELECT id from users WHERE email = ?), ?, ?, ?, ? , ?, ?);";
     if ($stmt = mysqli_prepare($link, $sql)) {
         // Bind variables to the prepared statement as parameters
         $curr_date = date("Y-m-d");
-        $workdays = getWorkdays($date_from, $date_to);
+        $workdays = get_workdays($date_from, $date_to);
         $status = 'pending';
         mysqli_stmt_bind_param($stmt, "sssssis", $_SESSION["email"], $date_from, $date_to, $reason, $curr_date, $workdays, $status);
 
@@ -117,8 +71,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     while (mysqli_stmt_fetch($stmt2)) {
                         $email_to = $supervisor_email;
                     }
-                    // Close statement
 
+                    // Close statement
                     mysqli_stmt_close($stmt2);
                 }
             }
@@ -136,8 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $f_name = $first_name;
                         $l_name = $last_name;
                     }
-                    // Close statement
 
+                    // Close statement
                     mysqli_stmt_close($stmt3);
                 }
             }
@@ -240,23 +194,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </td>
         </tr>
     </table>
-</body>
-
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="mystyle.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
-    </style>
-</head>
-<body>
-
 </body>
 </html>

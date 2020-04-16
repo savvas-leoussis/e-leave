@@ -1,5 +1,6 @@
 <?php
 require_once "pages/config.php";
+include './lib/format_date.php';
 // Initialize the session
 session_start();
 
@@ -77,10 +78,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                 ?>.
                                   <div class="text-center"><a style="margin: 10px;" href="/pages/submit_request.php" class="btn btn-primary">Submit Request</a></div>
                           <?php
-                          function format_date($date)
-                          {
-                              return date('d/m/Y', strtotime($date));
-                          }
                           $sql = 'SELECT vacation_start, vacation_end, date_submitted, days_requested, status FROM applications JOIN users WHERE users.email = ? AND applications.employee_id=(SELECT id FROM users WHERE email = ?) ORDER BY date_submitted DESC';
                           if ($stmt = mysqli_prepare($link, $sql)) {
                               // Bind variables to the prepared statement as parameters
