@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Apr 15, 2020 at 08:27 PM
+-- Generation Time: Apr 17, 2020 at 04:43 PM
 -- Server version: 8.0.19
 -- PHP Version: 7.4.4
 
@@ -71,8 +71,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `type`, `password`, `supervisor_id`) VALUES
-(1, 'Savvas', 'Leousis', 'savvasleoussis@gmail.com', 'supervisor', '$2y$10$a2KUWibTmhMZCcB7D72BOOnVGD56./w3uCAAN1cyAKZeeXzt4jJVi', 1),
-(3, 'John', 'Doe', 'test@gmail.com', 'employee', '$2y$10$LLuC27fKlDxz5Wt.327gUedwXjqzoqgxSLxqKxHZnTiOR6Ep.bTFW', 1);
+(1, 'Jason', 'Watkins', 'admin@test.com', 'supervisor', '$2y$10$a2KUWibTmhMZCcB7D72BOOnVGD56./w3uCAAN1cyAKZeeXzt4jJVi', 1),
+(3, 'John', 'Doe', 'user@test.com', 'employee', '$2y$10$LLuC27fKlDxz5Wt.327gUedwXjqzoqgxSLxqKxHZnTiOR6Ep.bTFW', 1);
 
 --
 -- Indexes for dumped tables
