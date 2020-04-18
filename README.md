@@ -90,25 +90,25 @@ Run the following commands:
 
 To get all the web service's Docker containers up, simply run the following command:
 
-        $ docker-compose up -d
+    $ docker-compose up -d
 
 After a while, all services should be up, and you can simply hit the address `localhost:80` on your browser to access the main page.
 Also, you can access phpMyAdmin via `localhost:8080`, with username `root` and password `root`.
 
 To shutdown all services, simply run:
 
-        $ docker-compose down
+    $ docker-compose down
 
 To pause all services, and maintain their state, run:
 
-        $ docker-compose pause
+    $ docker-compose pause
 
 To unpause:
 
-        $ docker-compose unpause
+    $ docker-compose unpause
 
 To restart all services at once:
 
-        $ docker-compose restart
+    $ docker-compose restart
 
 > See [Compose command-line reference](https://docs.docker.com/compose/reference/) for more details.
