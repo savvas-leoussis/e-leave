@@ -22,20 +22,21 @@ The project tree consists of the following base folders:
 
 * `css`: Contains the basic `.css` styles that can be included in all pages.
 * `database`: Contains a sample dump of the `eleave` MySQL database, and its EER diagram.
+* `img`: Contains image assets.
 * `lib`: Contains a collection of PHP functions that are commonly used across all pages.
 * `pages`: Contains all the pages that a user can navigate through the tool, written in PHP.
 * `sample navigation`: Contains PNG images of a simple usage guide.
 * `templates`: Contains HTML templates that can be used dynamically for leave request e-mails.
 
-## Sample Navigation
+## Example Navigation
 
 ### Use Case 1 (Employee)
 
-> The employee logs into the tool with his/her credentials provided by the company.
+> The employee logs into the tool on the URL: __http://localhost__ with his/her credentials provided by the company (Email: __employee@company.com__, Password: __password__).
 
 ![1](https://raw.githubusercontent.com/savvas-leoussis/e-leave/master/sample%20nagivation/1%20-%20E-Leave%20-%20Login.png)
 
-> He/She enters the main tool dashboard, initially with no application yet.
+> He/She enters the main tool dashboard.
 
 ![2](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/2%20-%20E-Leave%20-%20Dashboard%20-%20Empty.png?raw=true)
 
@@ -85,29 +86,29 @@ Run the following commands:
     $ git clone https://github.com/savvas-leoussis/e-leave.git
     $ cd e-leave
 
-## Usage
-
 To get all the web service's Docker containers up, simply run the following command:
 
-    $ docker-compose up -d
+        $ docker-compose up -d
 
 After a while, all services should be up, and you can simply hit the address `localhost:80` on your browser to access the main page.
 Also, you can access phpMyAdmin via `localhost:8080`, with username `root` and password `root`.
 
 To shutdown all services, simply run:
 
-    $ docker-compose down
+        $ docker-compose down
 
 To pause all services, and maintain their state, run:
 
-    $ docker-compose pause
+        $ docker-compose pause
 
 To unpause:
 
-    $ docker-compose unpause
+        $ docker-compose unpause
 
 To restart all services at once:
 
-    $ docker-compose restart
+        $ docker-compose restart
 
 > See [Compose command-line reference](https://docs.docker.com/compose/reference/) for more details.
+
+## Usage

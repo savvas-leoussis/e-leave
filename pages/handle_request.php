@@ -6,14 +6,14 @@ session_start();
 
 // Check if the user is logged in, if not then redirect him to login page
 
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: login.php");
+if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true) {
+    header("location: admin_login.php");
     exit;
-} elseif (isset($_SESSION["email"])) {
+} elseif (isset($_SESSION["admin_email"])) {
     $sql = 'SELECT id FROM users WHERE email = ? AND type = "supervisor"';
     if ($stmt = mysqli_prepare($link, $sql)) {
         // Bind variables to the prepared statement as parameters
-        mysqli_stmt_bind_param($stmt, "s", $_SESSION["email"]);
+        mysqli_stmt_bind_param($stmt, "s", $_SESSION["admin_email"]);
 
         // Attempt to execute the prepared statement
         if (mysqli_stmt_execute($stmt)) {
@@ -22,7 +22,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
             if (mysqli_stmt_num_rows($stmt) == 0) {
                 mysqli_stmt_close($stmt);
-                header("location: index.php");
+                header("location: ../index.php");
                 exit;
             }
 
