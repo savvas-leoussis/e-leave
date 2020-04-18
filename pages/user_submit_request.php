@@ -4,7 +4,7 @@ session_start();
 
 // Check if the user is logged in, otherwise redirect to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: login.php");
+    header("location: user_login.php");
     exit;
 }
 
@@ -99,8 +99,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $to = $email_to;
             $subject = 'e-Leave Request';
 
-            $accept_link = 'http://localhost/pages/handle_request.php?app_id=' . $application_id . '&accept=true&f_name=' . $f_name . '&l_name=' . $l_name;
-            $reject_link = 'http://localhost/pages/handle_request.php?app_id=' . $application_id . '&accept=false&f_name=' . $f_name . '&l_name=' . $l_name;
+            $accept_link = 'http://localhost/pages/admin_handle_request.php?app_id=' . $application_id . '&accept=true&f_name=' . $f_name . '&l_name=' . $l_name;
+            $reject_link = 'http://localhost/pages/admin_handle_request.php?app_id=' . $application_id . '&accept=false&f_name=' . $f_name . '&l_name=' . $l_name;
 
             $message = file_get_contents('../templates/confirm.html', true);
 

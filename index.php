@@ -7,11 +7,10 @@ session_start();
 
 // Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: pages/login.php");
+    header("location: pages/user_login.php");
     exit;
 }
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -74,7 +73,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                     }
                                 }
                                 ?>.
-                                  <div class="text-center"><a style="margin: 10px;" href="/pages/submit_request.php" class="btn btn-primary">Submit Request</a></div>
+                                  <div class="text-center"><a style="margin: 10px;" href="/pages/user_submit_request.php" class="btn btn-primary">Submit Request</a></div>
                           <?php
                           $sql = 'SELECT vacation_start, vacation_end, date_submitted, days_requested, status FROM applications JOIN users WHERE users.email = ? AND applications.employee_id=(SELECT id FROM users WHERE email = ?) ORDER BY date_submitted DESC';
                           if ($stmt = mysqli_prepare($link, $sql)) {
@@ -121,7 +120,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                           }
                           ?>
                           <p>
-                              <div class="text-center"><a href="/pages/logout.php" class="btn btn-danger">Log out</a></div>
+                              <div class="text-center"><a href="/pages/user_logout.php" class="btn btn-danger">Log out</a></div>
                           </p>
                         </td>
                     </tr>

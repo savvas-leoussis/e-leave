@@ -88,7 +88,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
         }
     }
 } else {
-    header("location: login.php");
+    header("location: admin_login.php");
     exit;
 }
 ?>
@@ -156,7 +156,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
                                     <td bgcolor="#ffffff" align="center" style="padding: 20px 10px 20px 30px;">
                                         <table border="0" cellspacing="1" cellpadding="1">
                                             <tr>
-                                                <td align="center" style="border-radius: 3px;" bgcolor="#ef883b"><a href="http://localhost" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #ef883b; display: inline-block;">Return</a></td>
+                                                <td align="center" style="border-radius: 3px;" bgcolor="#ef883b"><a href="http://localhost/admin.php" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #ef883b; display: inline-block;">Return</a></td>
                                             </tr>
                                         </table>
                                     </td>

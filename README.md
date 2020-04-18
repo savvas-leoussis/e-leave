@@ -3,11 +3,10 @@
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [Sample Navigation](#sample-navigation)
+- [Example Navigation](#example-navigation)
 - [Database Schema](#database-schema)
 - [Requirements](#requirements)
 - [Installation](#installation)
-- [Usage](#usage)
 
 ## Introduction
 
@@ -30,7 +29,7 @@ The project tree consists of the following base folders:
 
 ## Example Navigation
 
-### Use Case 1 (Employee)
+### Use Case 1 (Employee) - Submit a Request
 
 > The employee logs into the tool on the URL: __http://localhost__ with his/her credentials provided by the company (Email: __employee@company.com__, Password: __password__).
 
@@ -63,6 +62,9 @@ The project tree consists of the following base folders:
 > Going back to the dashboard, the status of the request is updated.
 
 ![8](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/8%20-%20E-Leave%20-%20Dashboard%20-%20Accepted.png?raw=true)
+
+### Use Case 2 (Admin) - Create a User
+
 
 ## Database Schema
 
@@ -110,5 +112,3 @@ To restart all services at once:
         $ docker-compose restart
 
 > See [Compose command-line reference](https://docs.docker.com/compose/reference/) for more details.
-
-## Usage
