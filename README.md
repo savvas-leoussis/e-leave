@@ -39,7 +39,7 @@ The project tree consists of the following base folders:
 
 ![2](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/2%20-%20E-Leave%20-%20Dashboard%20-%20Empty.png?raw=true)
 
-> He/She clicks the `Submit Request` button to create a new application, filling out all the fields.
+> The employee clicks the `Submit Request` button to create a new application, filling out all the fields.
 
 ![3](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/3%20-%20E-Leave%20-%20Submit%20Request.png?raw=true)
 
@@ -47,15 +47,15 @@ The project tree consists of the following base folders:
 
 ![4](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/4%20-%20E-Leave%20-%20Dashboard.png?raw=true)
 
-> Meanwhile, his/her supervisor receives an e-mail informing him/her about the employee's request.
+> Meanwhile, the corresponding supervisor receives an e-mail and either accepts or rejects the employee's request.
 
 ![5](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/5%20-%20MailHog.png?raw=true)
 
-> The supervisor clicks either the `Accept` or the `Reject` button to accept/reject the employee's request.
+> The supervisor clicks either the `Accept` or the `Reject` button.
 
 ![6](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/6%20-%20Request%20accepted.png?raw=true)
 
-> The employee receives an e-mail informing him/her about the outcome of his/her request.
+> The employee receives an e-mail with information about the outcome of his/her request.
 
 ![7](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/7%20-%20MailHog%20-%20Accepted.png?raw=true)
 
