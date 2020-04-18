@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Apr 17, 2020 at 04:43 PM
+-- Generation Time: Apr 18, 2020 at 01:11 PM
 -- Server version: 8.0.19
 -- PHP Version: 7.4.4
 
@@ -43,12 +43,12 @@ CREATE TABLE `applications` (
 --
 
 INSERT INTO `applications` (`id`, `employee_id`, `vacation_start`, `vacation_end`, `reason`, `date_submitted`, `days_requested`, `status`) VALUES
-(1, 3, '2020-04-12', '2020-04-15', 'This is a reason.', '2020-04-12', 3, 'pending'),
-(2, 3, '2020-04-16', '2020-04-17', 'This is a reason.', '2020-04-09', 2, 'pending'),
-(3, 3, '2020-04-16', '2020-04-17', 'This is a reason.', '2020-04-01', 2, 'pending'),
+(1, 3, '2020-04-12', '2020-04-15', 'This is a reason.', '2020-04-12', 3, 'accepted'),
+(2, 3, '2020-04-16', '2020-04-17', 'This is a reason.', '2020-04-09', 2, 'accepted'),
+(3, 3, '2020-04-16', '2020-04-17', 'This is a reason.', '2020-04-01', 2, 'accepted'),
 (10, 3, '2020-01-01', '2020-02-02', 'test', '2020-04-12', 21, 'pending'),
 (12, 3, '2020-02-02', '2020-03-03', 'resr', '2020-04-15', 22, 'pending'),
-(22, 3, '2020-02-01', '2022-02-02', 'ewr', '2020-04-15', 511, 'accepted');
+(22, 3, '2020-02-01', '2022-02-02', 'ewr', '2020-04-15', 511, 'rejected');
 
 -- --------------------------------------------------------
 
@@ -71,8 +71,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `type`, `password`, `supervisor_id`) VALUES
-(1, 'Jason', 'Watkins', 'admin@test.com', 'supervisor', '$2y$10$a2KUWibTmhMZCcB7D72BOOnVGD56./w3uCAAN1cyAKZeeXzt4jJVi', 1),
-(3, 'John', 'Doe', 'user@test.com', 'employee', '$2y$10$LLuC27fKlDxz5Wt.327gUedwXjqzoqgxSLxqKxHZnTiOR6Ep.bTFW', 1);
+(1, 'Jason', 'Watkins', 'admin@company.com', 'supervisor', '$2y$10$kj2e2.p3T7zPUVQpTLqVKezNlE04A4.nKO4YJsOeSDEdAZxdjyYFu', 1),
+(3, 'John', 'Doe', 'employee@company.com', 'employee', '$2y$10$Jx9OKtdlKDh2v39F7IjhYe5.2tjMWYhzofQ58NUkzkyDeyYsRdOLe', 1);
 
 --
 -- Indexes for dumped tables

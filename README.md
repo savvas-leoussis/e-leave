@@ -13,10 +13,10 @@
 
 This is the main repository that hosts E-Leave Leave Management Tool's source code. It can be deployed in __4__ containerized web services via Docker Engine, which are the following:
 
-* [MySQL DB](https://www.mysql.com/) (port 3306)
-* [Apache PHP Server](https://laravel.com/) (port 80)
-* [MailHog](https://github.com/mailhog/MailHog) (port 8025)
-* [phpMyAdmin](https://www.phpmyadmin.net/) (port 8080)
+* [MySQL DB](https://www.mysql.com/) (image: __mysql:8.0__, port: __3306__)
+* [Apache PHP Server](https://laravel.com/) (image: __php:7.1.33-apache__, port: __80__)
+* [MailHog](https://github.com/mailhog/MailHog) (image: __mailhog/mailhog:v1.0.0__, port: __8025__)
+* [phpMyAdmin](https://www.phpmyadmin.net/) (image: __phpmyadmin/phpmyadmin__, port __8080__)
 
 The project tree consists of the following base folders:
 

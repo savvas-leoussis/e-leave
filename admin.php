@@ -41,7 +41,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                         <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                            <h1 style="font-size: 48px; font-weight: 400; margin: 2;">E-Leave Admin Dashboard</h1> <img src=" https://www.epignosishq.com/wp-content/themes/epignosishq/dist/images/logo.svg" width="220" height="120" style="margin-top:30px ;display: block; border: 0px;" />
+                            <h1 style="font-size: 48px; font-weight: 400; margin: 2;">E-Leave Admin Dashboard</h1> <img src=" http://localhost/img/company_logo.png" width="220" height="120" style="margin-top:30px ;display: block; border: 0px;" />
                         </td>
                     </tr>
                 </table>
@@ -102,7 +102,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
                                           array_push($users, array("id" => $id, "first_name" => $first_name, "last_name" => $last_name, "email" => $email, "type" => $type));
                                       }
                                       foreach ($users as $user) {
-                                          echo "<tr class='clickable-row' onclick='window.location=\"http://localhost/pages/admin_create_user.php?user_id=" . $user['id'] . "\";'>
+                                          echo "<tr class='clickable-row' onclick='window.location=\"http://localhost/pages/admin_edit_user.php?user_id=" . $user['id'] . "\";'>
                                                 <th>" . $user['first_name'] . "</th>
                                                 <th>" . $user['last_name'] . "</th>
                                                 <th>" . $user['email'] . "</th>
@@ -110,10 +110,10 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
                                                 </tr>";
                                       }
                                       echo '</tbody></table>';
-                                  // Close statement
                                   } else {
                                       echo '<p>No users found!</p>';
                                   }
+                                  // Close statement
                                   mysqli_stmt_close($stmt);
                               }
                           }

@@ -15,9 +15,27 @@ require_once "config.php";
 $first_name = $last_name = $email = $password = $confirm_password = $type = "";
 $first_name_err = $last_name_err = $email_err = $password_err = $confirm_password_err = $type_err = "";
 
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    $user_id = $_GET['user_id'];
+    $sql = "SELECT first_name, last_name, email, type FROM users WHERE id=?";
+
+    if ($stmt = mysqli_prepare($link, $sql)) {
+        // Bind variables to the prepared statement as parameters
+        mysqli_stmt_bind_param($stmt, "i", $user_id);
+
+        // Attempt to execute the prepared statement
+        if (mysqli_stmt_execute($stmt)) {
+            /* store result */
+            mysqli_stmt_bind_result($stmt, $first_name, $last_name, $email, $type);
+            mysqli_stmt_fetch($stmt);
+        }
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+}
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    $user_id = $_POST['user_id'];
     // Validate first name
     if (empty(trim($_POST["first_name"]))) {
         $first_name_err = "Please enter a first name.";
@@ -70,19 +88,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check input errors before updating the database
     if (empty($first_name_err) && empty($last_name_err) && empty($email_err) &&
     empty($password_err) && empty($confirm_password_err) && empty($type_err)) {
-        // Prepare an insert statement
-        $sql = "INSERT INTO users (first_name, last_name, email, type, password, supervisor_id) VALUES (?, ?, ?, ?, ?, ?)";
 
+        // Prepare an insert statement
+        $sql = "UPDATE users SET first_name=?, last_name=?, email=?, type=?, password=? WHERE id=?";
         if ($stmt = mysqli_prepare($link, $sql)) {
+
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sssssi", $first_name, $last_name, $email, $type, $param_password, $_SESSION['admin_id']);
+            mysqli_stmt_bind_param($stmt, "sssssi", $first_name, $last_name, $email, $type, $param_password, $user_id);
 
             // Set parameters
             $param_password = password_hash($password, PASSWORD_DEFAULT);
 
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
-                // User created successfully, redirect to admin page
+                // User updated successfully, redirect to admin page
                 header("location: ../admin.php");
                 exit();
             } else {
@@ -103,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 
 <head>
-    <title>E-Leave - Create User</title>
+    <title>E-Leave - Edit User</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -128,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                         <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                            <h1 style="font-size: 48px; font-weight: 400; margin: 2;">E-Leave Create User</h1> <img src="http://localhost/img/company_logo.png" width="220" height="120" style="margin-top:30px ;display: block; border: 0px;" />
+                            <h1 style="font-size: 48px; font-weight: 400; margin: 2;">E-Leave Edit User</h1> <img src="http://localhost/img/company_logo.png" width="220" height="120" style="margin-top:30px ;display: block; border: 0px;" />
                         </td>
                     </tr>
                 </table>
@@ -139,8 +158,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                         <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                          <p>Please fill out this form to create a new user.</p>
+                          <p>Please fill out this form to edit the user.</p>
                           <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                            <input type="hidden" name="user_id" class="form-control" value="<?php echo $user_id; ?>">
                             <div class="form-group <?php echo (!empty($first_name_err)) ? 'has-error' : ''; ?>">
                                 <label>First Name</label>
                                 <input type="text" name="first_name" class="form-control" value="<?php echo $first_name; ?>">
@@ -169,14 +189,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                               <div class="form-group <?php echo (!empty($type_err)) ? 'has-error' : ''; ?>">
                                   <label>User Type</label>
                                   <select name="type" class="form-control">
-                                    <option disabled selected value> -- select an option -- </option>
-                                    <option value="employee">Employee</option>
-                                    <option value="supervisor">Admin</option>
+                                    <option
+                                    <?php
+                                    if ($type == 'employee') {
+                                        echo 'selected';
+                                    }?>
+                                    value="employee">Employee</option>
+                                    <option <?php
+                                    if ($type == 'supervisor') {
+                                        echo 'selected';
+                                    }?>
+                                    value="supervisor">Admin</option>
                                   </select>
                                   <span class="help-block"><?php echo $type_err; ?></span>
                               </div>
                               <div class="form-group">
-                                  <input type="submit" class="btn btn-primary" value="Submit">
+                                  <input type="submit" class="btn btn-primary" value="Update">
                                   <a class="btn btn-link" href="http://localhost/admin.php">Cancel</a>
                               </div>
                           </form>
