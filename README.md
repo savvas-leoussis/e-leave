@@ -19,13 +19,13 @@ This is the main repository that hosts E-Leave Leave Management Tool's source co
 
 The project tree consists of the following base folders:
 
-* `css`: Contains the basic `.css` styles that can be included in all pages.
-* `database`: Contains a sample dump of the `eleave` MySQL database, and its EER diagram.
-* `img`: Contains image assets.
-* `lib`: Contains a collection of PHP functions that are commonly used across all pages.
-* `pages`: Contains all the pages that a user can navigate through the tool, written in PHP.
-* `sample navigation`: Contains PNG images of a simple usage guide.
-* `templates`: Contains HTML templates that can be used dynamically for leave request e-mails.
+* `/css`: Contains the basic `.css` styles that can be included in all pages.
+* `/database`: Contains a sample dump of the `eleave` MySQL database, and its EER diagram.
+* `/img`: Contains image assets.
+* `/lib`: Contains a collection of PHP functions that are commonly used across all pages.
+* `/pages`: Contains all the pages that a user can navigate through the tool, written in PHP.
+* `/sample navigation`: Contains PNG images of a simple usage guide.
+* `/templates`: Contains HTML templates that can be used dynamically for leave request e-mails.
 
 ## Example Navigation
 
