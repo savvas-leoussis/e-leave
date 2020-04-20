@@ -10,6 +10,7 @@
 * [Example Navigation](#example-navigation)
     * [Use Case 1 (Employee) - Submit a Request](#use-case-1-employee---submit-a-request)
     * [Use Case 2 (Admin) - Create a User](#use-case-2-admin---create-a-user)
+    * [Use Case 3 (Admin) - Edit a User](#use-case-3-admin---edit-a-user)
 * [Database Schema](#database-schema)
 
 ## Introduction
@@ -118,6 +119,40 @@ To restart all services at once:
 ![8](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/8%20-%20E-Leave%20-%20Dashboard%20-%20Accepted.png?raw=true)
 
 ### Use Case 2 (Admin) - Create a User
+
+> The administrator logs into the tool admin page on the URL: __http://localhost/admin.php__ with his/her credentials provided by the company (Email: __admin@company.com__, Password: __password__).
+
+![1](https://raw.githubusercontent.com/savvas-leoussis/e-leave/master/sample%20nagivation/1%20-%20E-Leave%20-%20Login.png)
+
+> Then he/she enters the main tool admin dashboard.
+
+![2](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/2%20-%20E-Leave%20-%20Dashboard%20-%20Empty.png?raw=true)
+
+> The admin clicks the `Create User` button to create a new user, filling out all the fields.
+
+![3](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/3%20-%20E-Leave%20-%20Submit%20Request.png?raw=true)
+
+>The new user is added to the admin dashboard.
+
+![4](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/4%20-%20E-Leave%20-%20Dashboard.png?raw=true)
+
+### Use Case 3 (Admin) - Edit a User
+
+> The administrator logs into the tool admin page on the URL: __http://localhost/admin.php__ with his/her credentials provided by the company (Email: __admin@company.com__, Password: __password__).
+
+![1](https://raw.githubusercontent.com/savvas-leoussis/e-leave/master/sample%20nagivation/1%20-%20E-Leave%20-%20Login.png)
+
+> Then he/she enters the main tool admin dashboard.
+
+![2](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/2%20-%20E-Leave%20-%20Dashboard%20-%20Empty.png?raw=true)
+
+> The admin clicks the row containing the user he/she wants to edit from the table of users, filling out all the fields.
+
+![3](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/3%20-%20E-Leave%20-%20Submit%20Request.png?raw=true)
+
+>The edited user is added to the admin dashboard.
+
+![4](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/4%20-%20E-Leave%20-%20Dashboard.png?raw=true)
 
 ## Database Schema
 
