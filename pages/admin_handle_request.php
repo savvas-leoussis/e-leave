@@ -1,23 +1,27 @@
 <?php
+// Include config file and required libraries
 require_once "config.php";
 include '../lib/format_date.php';
+
 // Initialize the session
 session_start();
 
-// Check if the user is logged in, if not then redirect him to login page
-
+// Check if the admin is logged in, if not then redirect him to admin login page
 if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true) {
     header("location: admin_login.php");
     exit;
 } elseif (isset($_SESSION["admin_email"])) {
+    // Get id of admin
     $sql = 'SELECT id FROM users WHERE email = ? AND type = "supervisor"';
     if ($stmt = mysqli_prepare($link, $sql)) {
+
         // Bind variables to the prepared statement as parameters
         mysqli_stmt_bind_param($stmt, "s", $_SESSION["admin_email"]);
 
         // Attempt to execute the prepared statement
         if (mysqli_stmt_execute($stmt)) {
-            /* store result */
+
+            /* Store result */
             mysqli_stmt_store_result($stmt);
 
             if (mysqli_stmt_num_rows($stmt) == 0) {
@@ -37,6 +41,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
             } else {
                 $status = 'pending';
             }
+            // Update application status
             $sql = 'UPDATE applications SET status=? WHERE id=?';
             if ($stmt = mysqli_prepare($link, $sql)) {
                 // Bind variables to the prepared statement as parameters
@@ -44,19 +49,21 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 
                 // Attempt to execute the prepared statement
                 if (mysqli_stmt_execute($stmt)) {
-                    /* store result */
+
+                    /* Store result */
                     mysqli_stmt_close($stmt);
 
-
-
+                    // Get application submission date and employee email
                     $sql2 = 'SELECT date_submitted, email FROM applications JOIN users WHERE applications.id=? AND employee_id=users.id';
                     if ($stmt2 = mysqli_prepare($link, $sql2)) {
+
                         // Bind variables to the prepared statement as parameters
                         mysqli_stmt_bind_param($stmt2, "s", $_GET["app_id"]);
 
                         // Attempt to execute the prepared statement
                         if (mysqli_stmt_execute($stmt2)) {
-                            /* store result */
+
+                            /* Store result */
                             mysqli_stmt_bind_result($stmt2, $submission_date, $email);
 
                             while (mysqli_stmt_fetch($stmt2)) {
@@ -68,18 +75,19 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
                             mysqli_stmt_close($stmt2);
 
                             //Send e-mail back to applicant
-
                             $to = $email_to;
                             $subject = 'e-Leave Response';
 
                             $message = file_get_contents('../templates/info.html', true);
-
+                            // Fill out template
                             $message = str_replace("{accepted/rejected}", $status, $message);
                             $message = str_replace("{submission_date}", format_date($date_submitted), $message);
+
                             $headers = "MIME-Version: 1.0" . "\r\n";
                             $headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
                             $headers .= 'From: e-leave@company.com' . "\r\n";
 
+                            // Send mail to employee
                             mail($email_to, $subject, $message, $headers);
                         }
                     }
@@ -92,9 +100,9 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
     exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>E-Leave - Request</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -103,7 +111,6 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="http://localhost/css/style.css">
 </head>
-
 <body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
@@ -164,13 +171,10 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 
                             </table>
                         </td>
-                    </tr> <!-- COPY -->
-
-
+                    </tr>
                 </table>
             </td>
         </tr>
     </table>
 </body>
-
 </html>

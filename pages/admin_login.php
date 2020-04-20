@@ -2,7 +2,7 @@
 // Initialize the session
 session_start();
 
-// Check if the user is already logged in, if yes then redirect him to welcome page
+// Check if the admin is already logged in, if yes then redirect him to admin login page
 if (isset($_SESSION["admin_loggedin"]) && $_SESSION["admin_loggedin"] === true) {
     header("location: ../admin.php");
     exit;
@@ -38,11 +38,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "SELECT id, email, password FROM users WHERE email = ? AND type='supervisor'";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_email);
 
-            // Set parameters
-            $param_email = $email;
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $email);
 
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
@@ -52,10 +50,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 // Check if email exists, if yes then verify password
                 if (mysqli_stmt_num_rows($stmt) == 1) {
+
                     // Bind result variables
                     mysqli_stmt_bind_result($stmt, $id, $email, $hashed_password);
+
                     if (mysqli_stmt_fetch($stmt)) {
                         if (password_verify($password, $hashed_password)) {
+
                             // Password is correct, so start a new session
                             session_start();
 
@@ -88,9 +89,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_close($link);
 }
 ?>
+
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>E-Leave - Admin Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -99,7 +100,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="http://localhost/css/style.css">
 </head>
-
 <body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <!-- LOGO -->
@@ -151,5 +151,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </tr>
     </table>
 </body>
-
 </html>

@@ -1,20 +1,20 @@
 <?php
+// Include config file and required libraries
 require_once "pages/config.php";
 include './lib/colorize_type.php';
+
 // Initialize the session
 session_start();
 
-// Check if the user is logged in, if not then redirect him to login page
+// Check if the admin is logged in, if not then redirect him to admin login page
 if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true) {
     header("location: pages/admin_login.php");
     exit;
 }
 ?>
 
-
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>E-Leave - Admin Dashboard</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -23,10 +23,8 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="http://localhost/css/style.css">
 </head>
-
 <body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
-        <!-- LOGO -->
         <tr>
             <td bgcolor="#246cb4" align="center">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
@@ -53,18 +51,21 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
                     <tr>
                         <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
                                 Welcome to e-Leave, <?php
+
+                                // Get first name and last name of user
                                 $sql = "SELECT first_name, last_name FROM users WHERE email = ?";
                                 if ($stmt = mysqli_prepare($link, $sql)) {
+
                                     // Bind variables to the prepared statement as parameters
                                     mysqli_stmt_bind_param($stmt, "s", $_SESSION["admin_email"]);
 
-                                    // Set parameters
-                                    $param_email = $_SESSION["admin_email"];
                                     // Attempt to execute the prepared statement
                                     if (mysqli_stmt_execute($stmt)) {
+
                                         /* store result */
                                         mysqli_stmt_bind_result($stmt, $first_name, $last_name);
 
+                                        // print first and last name camel case
                                         while (mysqli_stmt_fetch($stmt)) {
                                             printf("%s %s", ucfirst($first_name), ucfirst($last_name));
                                         }
@@ -76,16 +77,21 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
                                 ?>.
                                   <div class="text-center"><a style="margin: 10px;" href="/pages/admin_create_user.php" class="btn btn-primary">Create User</a></div>
                           <?php
+
+                          // Get all users
                           $sql = 'SELECT id, first_name, last_name, email, type FROM users ORDER BY type DESC';
                           if ($stmt = mysqli_prepare($link, $sql)) {
 
-                              // Set parameters
-                              $param_email = $_SESSION["admin_email"];
                               // Attempt to execute the prepared statement
                               if (mysqli_stmt_execute($stmt)) {
-                                  /* store result */
+
+                                  /* Store result */
                                   mysqli_stmt_store_result($stmt);
+
+                                  // Bind results to variables
                                   mysqli_stmt_bind_result($stmt, $id, $first_name, $last_name, $email, $type);
+
+                                  // If results are returned, create a table
                                   if (mysqli_stmt_num_rows($stmt) > 0) {
                                       echo '<table class="table table-striped table-hover table-bordered table-sm" cellspacing="0" width="100%">
                                       <thead>
@@ -97,6 +103,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
                                         </tr>
                                       </thead>
                                       <tbody>';
+
                                       $users = array();
                                       while (mysqli_stmt_fetch($stmt)) {
                                           array_push($users, array("id" => $id, "first_name" => $first_name, "last_name" => $last_name, "email" => $email, "type" => $type));
@@ -113,6 +120,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
                                   } else {
                                       echo '<p>No users found!</p>';
                                   }
+
                                   // Close statement
                                   mysqli_stmt_close($stmt);
                               }
@@ -128,5 +136,4 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
         </tr>
     </table>
 </body>
-
 </html>

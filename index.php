@@ -1,7 +1,9 @@
 <?php
+// Include config file and required libraries
 require_once "pages/config.php";
 include './lib/format_date.php';
 include './lib/colorize_status.php';
+
 // Initialize the session
 session_start();
 
@@ -14,7 +16,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>E-Leave - Dashboard</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -23,7 +24,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="http://localhost/css/style.css">
 </head>
-
 <body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
@@ -52,41 +52,48 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <tr>
                         <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
                                 Welcome to e-Leave, <?php
+
+                                // Get first name and last name of user
                                 $sql = 'SELECT first_name, last_name FROM users WHERE email = ?';
                                 if ($stmt = mysqli_prepare($link, $sql)) {
+
                                     // Bind variables to the prepared statement as parameters
                                     mysqli_stmt_bind_param($stmt, "s", $_SESSION["email"]);
 
-                                    // Set parameters
-                                    $param_email = $_SESSION["email"];
                                     // Attempt to execute the prepared statement
                                     if (mysqli_stmt_execute($stmt)) {
-                                        /* store result */
+
+                                        // Store result
                                         mysqli_stmt_bind_result($stmt, $first_name, $last_name);
 
                                         while (mysqli_stmt_fetch($stmt)) {
                                             printf("%s %s", ucfirst($first_name), ucfirst($last_name));
                                         }
-                                        // Close statement
 
+                                        // Close statement
                                         mysqli_stmt_close($stmt);
                                     }
                                 }
                                 ?>.
                                   <div class="text-center"><a style="margin: 10px;" href="/pages/user_submit_request.php" class="btn btn-primary">Submit Request</a></div>
                           <?php
+
+                          // Get all application created by the user, with all info
                           $sql = 'SELECT vacation_start, vacation_end, date_submitted, days_requested, status FROM applications JOIN users WHERE users.email = ? AND applications.employee_id=(SELECT id FROM users WHERE email = ?) ORDER BY date_submitted DESC';
                           if ($stmt = mysqli_prepare($link, $sql)) {
                               // Bind variables to the prepared statement as parameters
                               mysqli_stmt_bind_param($stmt, "ss", $_SESSION["email"], $_SESSION["email"]);
 
-                              // Set parameters
-                              $param_email = $_SESSION["email"];
                               // Attempt to execute the prepared statement
                               if (mysqli_stmt_execute($stmt)) {
-                                  /* store result */
+
+                                  /* Store result */
                                   mysqli_stmt_store_result($stmt);
+
+                                  // Bind results to variables
                                   mysqli_stmt_bind_result($stmt, $vacation_start, $vacation_end, $date_submitted, $days_requested, $status);
+
+                                  // If there are rows returned, create a table
                                   if (mysqli_stmt_num_rows($stmt) > 0) {
                                       echo '<table class="table table-striped table-hover table-bordered table-sm" cellspacing="0" width="100%">
                                       <thead>
@@ -111,10 +118,11 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                                 </tr>';
                                       }
                                       echo '</tbody></table>';
-                                  // Close statement
                                   } else {
                                       echo '<p>No applications found!</p>';
                                   }
+
+                                  // Close statement
                                   mysqli_stmt_close($stmt);
                               }
                           }
@@ -129,5 +137,4 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         </tr>
     </table>
 </body>
-
 </html>

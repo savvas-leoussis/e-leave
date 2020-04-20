@@ -2,7 +2,7 @@
 // Initialize the session
 session_start();
 
-// Check if the user is already logged in, if yes then redirect him to welcome page
+// Check if the user is already logged in, if yes then redirect him to login page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     header("location: ../index.php");
     exit;
@@ -38,11 +38,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "SELECT id, email, password FROM users WHERE email = ?";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_email);
 
-            // Set parameters
-            $param_email = $email;
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $email);
 
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
@@ -52,10 +50,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 // Check if email exists, if yes then verify password
                 if (mysqli_stmt_num_rows($stmt) == 1) {
+
                     // Bind result variables
                     mysqli_stmt_bind_result($stmt, $id, $email, $hashed_password);
+
                     if (mysqli_stmt_fetch($stmt)) {
                         if (password_verify($password, $hashed_password)) {
+
                             // Password is correct, so start a new session
                             session_start();
 
@@ -67,11 +68,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             // Redirect user to welcome page
                             header("location: ../index.php");
                         } else {
+
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
                         }
                     }
                 } else {
+
                     // Display an error message if email doesn't exist
                     $email_err = "No account found with that email.";
                 }
@@ -88,9 +91,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_close($link);
 }
 ?>
+
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>E-Leave - Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -99,7 +102,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="http://localhost/css/style.css">
 </head>
-
 <body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
@@ -150,5 +152,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </tr>
     </table>
 </body>
-
 </html>

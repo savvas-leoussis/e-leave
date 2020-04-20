@@ -2,7 +2,7 @@
 // Initialize the session
 session_start();
 
-// Check if the user is logged in, otherwise redirect to login page
+// Check if the admin is logged in, otherwise redirect to admin login page
 if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true) {
     header("location: admin_login.php");
     exit;
@@ -16,23 +16,31 @@ $first_name = $last_name = $email = $password = $confirm_password = $type = "";
 $first_name_err = $last_name_err = $email_err = $password_err = $confirm_password_err = $type_err = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
+
+    // Get info related to a user with a specific id.
     $user_id = $_GET['user_id'];
     $sql = "SELECT first_name, last_name, email, type FROM users WHERE id=?";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
+
         // Bind variables to the prepared statement as parameters
         mysqli_stmt_bind_param($stmt, "i", $user_id);
 
         // Attempt to execute the prepared statement
         if (mysqli_stmt_execute($stmt)) {
-            /* store result */
+
+            // Bind results to variables
             mysqli_stmt_bind_result($stmt, $first_name, $last_name, $email, $type);
+
+            // Fetch statement
             mysqli_stmt_fetch($stmt);
         }
+
         // Close statement
         mysqli_stmt_close($stmt);
     }
 }
+
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_id = $_POST['user_id'];
@@ -89,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($first_name_err) && empty($last_name_err) && empty($email_err) &&
     empty($password_err) && empty($confirm_password_err) && empty($type_err)) {
 
-        // Prepare an insert statement
+        // Prepare an UPDATE statement
         $sql = "UPDATE users SET first_name=?, last_name=?, email=?, type=?, password=? WHERE id=?";
         if ($stmt = mysqli_prepare($link, $sql)) {
 
@@ -101,6 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
+
                 // User updated successfully, redirect to admin page
                 header("location: ../admin.php");
                 exit();
@@ -120,7 +129,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>E-Leave - Edit User</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -129,10 +137,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="http://localhost/css/style.css">
 </head>
-
 <body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
-        <!-- LOGO -->
         <tr>
             <td bgcolor="#246cb4" align="center">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
@@ -215,5 +221,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </tr>
     </table>
 </body>
-
 </html>

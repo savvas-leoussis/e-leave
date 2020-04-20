@@ -2,7 +2,7 @@
 // Initialize the session
 session_start();
 
-// Check if the user is logged in, otherwise redirect to login page
+// Check if the admin is logged in, otherwise redirect to admin login page
 if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true) {
     header("location: admin_login.php");
     exit;
@@ -70,7 +70,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check input errors before updating the database
     if (empty($first_name_err) && empty($last_name_err) && empty($email_err) &&
     empty($password_err) && empty($confirm_password_err) && empty($type_err)) {
-        // Prepare an insert statement
+
+        // Prepare an INSERT statement
         $sql = "INSERT INTO users (first_name, last_name, email, type, password, supervisor_id) VALUES (?, ?, ?, ?, ?, ?)";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
@@ -82,6 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
+
                 // User created successfully, redirect to admin page
                 header("location: ../admin.php");
                 exit();
@@ -101,7 +103,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>E-Leave - Create User</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -110,10 +111,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="http://localhost/css/style.css">
 </head>
-
 <body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
-        <!-- LOGO -->
         <tr>
             <td bgcolor="#246cb4" align="center">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
@@ -187,5 +186,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </tr>
     </table>
 </body>
-
 </html>
