@@ -1,4 +1,8 @@
-<?php function get_workdays($date1, $date2, $workSat = false, $patron = null)
+<?php
+
+// Calculates workdays between two different dates,
+// taking into consideration weekends and public holidays
+function get_workdays($date1, $date2, $workSat = false, $patron = null)
 {
     if (!defined('SATURDAY')) {
         define('SATURDAY', 6);
