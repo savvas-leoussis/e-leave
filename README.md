@@ -88,71 +88,71 @@ To restart all services at once:
 
 > The employee logs into the tool on the URL: __http://localhost__ with his/her credentials provided by the company (Email: __employee@company.com__, Password: __password__).
 
-![1](https://raw.githubusercontent.com/savvas-leoussis/e-leave/master/sample%20nagivation/1%20-%20E-Leave%20-%20Login.png)
+![1](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/Use%20Case%201/1%20-%20E-Leave%20-%20Login.png?raw=true)
 
 > He/She enters the main tool dashboard.
 
-![2](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/2%20-%20E-Leave%20-%20Dashboard%20-%20Empty.png?raw=true)
+![2](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/Use%20Case%201/2%20-%20E-Leave%20-%20Dashboard%20-%20Empty.png?raw=true)
 
 > The employee clicks the `Submit Request` button to create a new application, filling out all the fields.
 
-![3](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/3%20-%20E-Leave%20-%20Submit%20Request.png?raw=true)
+![3](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/Use%20Case%201/3%20-%20E-Leave%20-%20Submit%20Request.png?raw=true)
 
 >The new application is added to the dashboard, with the `Pending` status.
 
-![4](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/4%20-%20E-Leave%20-%20Dashboard.png?raw=true)
+![4](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/Use%20Case%201/4%20-%20E-Leave%20-%20Dashboard.png?raw=true)
 
 > Meanwhile, the corresponding supervisor receives an e-mail and either accepts or rejects the employee's request.
 
-![5](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/5%20-%20MailHog.png?raw=true)
+![5](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/Use%20Case%201/5%20-%20MailHog.png?raw=true)
 
 > The supervisor clicks either the `Accept` or the `Reject` button.
 
-![6](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/6%20-%20Request%20accepted.png?raw=true)
+![6](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/Use%20Case%201/6%20-%20Request%20accepted.png?raw=true)
 
 > The employee receives an e-mail with information about the outcome of his/her request.
 
-![7](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/7%20-%20MailHog%20-%20Accepted.png?raw=true)
+![7](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/Use%20Case%201/7%20-%20MailHog%20-%20Accepted.png?raw=true)
 
 > Going back to the dashboard, the status of the request is updated.
 
-![8](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/8%20-%20E-Leave%20-%20Dashboard%20-%20Accepted.png?raw=true)
+![8](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/Use%20Case%201/8%20-%20E-Leave%20-%20Dashboard%20-%20Accepted.png?raw=true)
 
 ### Use Case 2 (Admin) - Create a User
 
 > The administrator logs into the tool admin page on the URL: __http://localhost/admin.php__ with his/her credentials provided by the company (Email: __admin@company.com__, Password: __password__).
 
-![1](https://raw.githubusercontent.com/savvas-leoussis/e-leave/master/sample%20nagivation/1%20-%20E-Leave%20-%20Login.png)
+![1](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/Use%20Case%202/1-%20E-Leave%20-%20Admin%20Login.png?raw=true)
 
 > Then he/she enters the main tool admin dashboard.
 
-![2](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/2%20-%20E-Leave%20-%20Dashboard%20-%20Empty.png?raw=true)
+![2](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/Use%20Case%202/2%20-%20E-Leave%20-%20Admin%20Dashboard.png?raw=true)
 
 > The admin clicks the `Create User` button to create a new user, filling out all the fields.
 
-![3](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/3%20-%20E-Leave%20-%20Submit%20Request.png?raw=true)
+![3](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/Use%20Case%202/3%20-%20E-Leave%20-%20Create%20User.png?raw=true)
 
 >The new user is added to the admin dashboard.
 
-![4](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/4%20-%20E-Leave%20-%20Dashboard.png?raw=true)
+![4](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/Use%20Case%202/4%20-%20E-Leave%20-%20Admin%20Dashboard%202.png?raw=true)
 
 ### Use Case 3 (Admin) - Edit a User
 
 > The administrator logs into the tool admin page on the URL: __http://localhost/admin.php__ with his/her credentials provided by the company (Email: __admin@company.com__, Password: __password__).
 
-![1](https://raw.githubusercontent.com/savvas-leoussis/e-leave/master/sample%20nagivation/1%20-%20E-Leave%20-%20Login.png)
+![1](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/Use%20Case%203/1-%20E-Leave%20-%20Admin%20Login.png?raw=true)
 
 > Then he/she enters the main tool admin dashboard.
 
-![2](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/2%20-%20E-Leave%20-%20Dashboard%20-%20Empty.png?raw=true)
+![2](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/Use%20Case%203/2%20-%20E-Leave%20-%20Admin%20Dashboard%202.png?raw=true)
 
 > The admin clicks the row containing the user he/she wants to edit from the table of users, filling out all the fields.
 
-![3](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/3%20-%20E-Leave%20-%20Submit%20Request.png?raw=true)
+![3](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/Use%20Case%203/3%20-%20E-Leave%20-%20Edit%20User.png?raw=true)
 
 >The edited user is added to the admin dashboard.
 
-![4](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/4%20-%20E-Leave%20-%20Dashboard.png?raw=true)
+![4](https://github.com/savvas-leoussis/e-leave/blob/master/sample%20nagivation/Use%20Case%203/4%20-%20E-Leave%20-%20Admin%20Dashboard%203.png?raw=true)
 
 ## Database Schema
 
