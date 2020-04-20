@@ -2,15 +2,15 @@
 
 ## Table of Contents
 
-- [Introduction](#introduction)
--- [Quick Summary](#quick-summary)
--- [Containers](#containers)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Example Navigation](#example-navigation)
--- [Use Case 1 (Employee) - Submit a Request](#use-case-1-employee---submit-a-request)
--- [Use Case 2 (Admin) - Create a User](#use-case-2-admin---create-a-user)
-- [Database Schema](#database-schema)
+* [Introduction](#introduction)
+    * [Quick Summary](#quick-summary)
+    * [Containers](#containers)
+* [Requirements](#requirements)
+* [Installation](#installation)
+* [Example Navigation](#example-navigation)
+    * [Use Case 1 (Employee) - Submit a Request](#use-case-1-employee---submit-a-request)
+    * [Use Case 2 (Admin) - Create a User](#use-case-2-admin---create-a-user)
+* [Database Schema](#database-schema)
 
 ## Introduction
 
