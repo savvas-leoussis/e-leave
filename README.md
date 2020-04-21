@@ -18,7 +18,7 @@
 
 ### Quick Summary
 
-E-Leave is a leave management software that provides to employees of a company the ability to create leave requests to their perspective managers/supervisors. It also allows administrators to process those applications and oversee the incoming leave requests.
+E-Leave is a leave management software that provides to employees of a company the ability to create leave requests to their respective managers/supervisors. It also allows administrators to process those applications and oversee the incoming leave requests.
 
 ### Containers
 
